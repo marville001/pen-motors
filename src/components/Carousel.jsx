@@ -39,14 +39,14 @@ const Carousel = () => {
           </div>
           <div class="carousel-item c-i-two">
           <div className="carousel-details">
-                <h2 className="my-5 text-white">Get a car Faster at Affordable price</h2>
+                <h2 className="my-5 text-white">Fast delivery or pick up</h2>
                 <button className="btn btn-success">Shop Now</button>
             </div>
           </div>
           <div class="carousel-item c-i-three">
           <div className="carousel-details">
-                <h2 className="my-5 text-white">Get a car Faster at Affordable price</h2>
-                <button className="btn btn-primary">View Our Car</button>
+                <h2 className="my-5 text-white">It was never this simple</h2>
+                <button className="btn btn-primary">Get your dream Car</button>
             </div>
           </div>
         </div>
