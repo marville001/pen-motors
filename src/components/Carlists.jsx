@@ -12,12 +12,12 @@ const Carlists = () => {
                         <h6>Make-Model</h6>
                         <div className = "price-cart">
                             <h5>1.5M</h5>
-                            {/* <button className = "btn btn-outline-primary btn-sm">Add <i className="fa fa-cart-plus"></i></button> */}
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-sm btn-primary mx-3">-</button>
+                            <button className = "btn btn-outline-primary btn-sm">Add <i className="fa fa-cart-plus"></i></button>
+                            {/* <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-sm btn-primary px-2">-</button>
                                 <button type="button" class="btn btn-sm btn-light">3</button>
-                                <button type="button" class="btn btn-sm btn-primary mx-3">+</button>
-                            </div>
+                                <button type="button" class="btn btn-sm btn-primary px-2">+</button>
+                            </div> */}
                         </div>
                     </div>
                 ))}

@@ -59,7 +59,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-<<<<<<< HEAD
 }
 
 /* Lists */
@@ -96,7 +95,4 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-=======
-    background-color: rgba(0,0,0,.3);
->>>>>>> 31f3928518a0306030dcc8ff75c220bfafec54a4
 }
