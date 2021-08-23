@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div>
       <Carousel />
-      <Carlists />
+      <Carlists title="Top Cars" />
     </div>
   );
 };
