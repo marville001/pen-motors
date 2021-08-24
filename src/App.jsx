@@ -8,7 +8,7 @@ import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import getCarsActions from "./redux/actions/carsActions";
+import {getCarsActions} from "./redux/actions/carsActions";
 
 const App = () => {
   const dispatch = useDispatch()

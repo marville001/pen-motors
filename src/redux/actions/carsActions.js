@@ -1,7 +1,7 @@
 import axios from "axios";
-import { CAR, CARS } from "../types"
+import { CAR, CARS, ADD_TO_CART } from "../types"
 
-const getCarsActions = () => async (dispatch) => {
+export const getCarsActions = () => async (dispatch) => {
     dispatch({
         type: CARS.REQUEST
     })
@@ -43,4 +43,9 @@ export const getCarActions = (id) => async (dispatch) => {
     }
 }
 
-export default getCarsActions
+export const addToCartActions = (id) => async (dispatch) => {
+    dispatch({
+        type: ADD_TO_CART,
+        id
+    })
+}

@@ -13,3 +13,5 @@ export const CAR = {
     SUCCESS:"GET_CAR_SUCCESS",
     FAIL:"GET_CAR_FAIL",
 }
+
+export const ADD_TO_CART = "ADD_TO_CART"
