@@ -2,38 +2,29 @@ import React from "react";
 
 const DetailsCarousel = ({ images }) => {
   return (
-    <div className="carousel-container">
+    <div className="details-carousel-container">
       <div
         id="carouselExampleIndicators"
         className="carousel slide"
         data-bs-ride="carousel"
       >
         <div className="carousel-indicators">
-          <button
+          {images.map((img, i)=>(
+            <button
             type="button"
+            key={i}
             data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            className="active"
+            data-bs-slide-to={i}
+            className={i===0 && "active"}
             aria-current="true"
             aria-label="Slide 1"
           ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
+          ))}
         </div>
         <div className="carousel-inner">
-          {images.map((image) => (
-            <div className="carousel-item c-i-one active">
-              <img src={image} alt={"jkdjksjkdsjkdjk"} srcset="" />
+          {images.map((image, i) => (
+            <div className= {i===0 ? "carousel-item active":"carousel-item"}>
+              <img src={image} alt={"Image name"} srcset="" />
             </div>
           ))}
         </div>

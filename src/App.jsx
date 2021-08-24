@@ -18,12 +18,14 @@ const App = () => {
   return (
     <>
       <Header />
+      <div className="main-container">
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/cars" component={AllCars} />
         <Route path="/details/:id" component={CarDetails} />
         <Route path="/cart" component={Cart} />
       </Switch>
+      </div>
       <Footer />
     </>
   );

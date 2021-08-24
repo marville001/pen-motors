@@ -7,3 +7,9 @@ export const CARS = {
     SUCCESS:"GET_CARS_SUCCESS",
     FAIL:"GET_CARS_FAIL",
 }
+
+export const CAR = {
+    REQUEST:"GET_CAR_REQUEST",
+    SUCCESS:"GET_CAR_SUCCESS",
+    FAIL:"GET_CAR_FAIL",
+}
