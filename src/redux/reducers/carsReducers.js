@@ -24,7 +24,7 @@ export const carsReducer = (state = initialState, action) => {
             return { ...state, loading: false, error: action.error }
             case ADD_TO_CART:
                 const item = state.cars.find(car=>car.id===action.id)
-                return { ...state, cart: [...state.cart, item ] }
+                return { ...state, cart: [...state.cart, {...item, quantity: 1} ] }
                 // case ADD_CART_QUANTITY:
                 //     return { ...state, cart: [...state.cart, [action.id]:{name:"dhdh"} ] }
 

@@ -9,18 +9,25 @@ const CarListCard = ({
 }) => {
   const { cart } = useSelector((state) => state.cars);
   const dispatch = useDispatch();
-  let inCart = false;
 
-  const checkIfInCart = () => {
+  const inCart = () => {
     const item = cart.find((c) => c.id === id);
     if (item?.id) {
-      inCart = true;
-      console.log(inCart);
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const fetchQuantity = () => {
+    if (cart.length === 0) {
+      return 0;
+    } else {
+      return cart?.find((c) => c.id === id).quantity;
     }
   };
   useEffect(() => {
-    checkIfInCart();
-  }, [inCart]);
+    // console.log(fetchQuantity());
+  }, []);
   return (
     <div key={id} className="list-card">
       <Link to={`/details/${id}`}>
@@ -38,13 +45,13 @@ const CarListCard = ({
       </h6>
       <div className="price-cart">
         <h5 className="text-success">Ksh {price}</h5>
-        {inCart ? (
+        {inCart() ? (
           <div className="btn-group" role="group" aria-label="Basic example">
             <button type="button" className="btn btn-sm btn-primary px-2">
               -
             </button>
             <button type="button" className="btn btn-sm btn-light">
-              3
+              {fetchQuantity()}
             </button>
             <button type="button" className="btn btn-sm btn-primary px-2">
               +
