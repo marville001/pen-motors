@@ -3,8 +3,8 @@ import React from "react";
 const FilterForm = () => {
   return (
     <div className="page-container filter-container">
-      <div class="form-group mb-2">
-        <select class="form-control">
+      <div className="form-group mb-2">
+        <select className="form-control">
           <option>Model</option>
           <option>Sedan </option>
           <option>Coupe</option>
@@ -12,8 +12,8 @@ const FilterForm = () => {
           <option>Hatch Back</option>
         </select>
       </div>
-      <div class="form-group mb-2">
-        <select class="form-control">
+      <div className="form-group mb-2">
+        <select className="form-control">
           <option>Make</option>
           <option>Ford</option>
           <option>Chevrolet</option>
@@ -21,8 +21,8 @@ const FilterForm = () => {
           <option>Jeep</option>
         </select>
       </div>
-      <div class="form-group mb-2">
-        <select class="form-control">
+      <div className="form-group mb-2">
+        <select className="form-control">
           <option>Year</option>
           <option value="2010">2010</option>
           <option value="2015">2015</option>
@@ -30,7 +30,7 @@ const FilterForm = () => {
           <option value="2020">2020</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary mb-2">
+      <button type="submit" className="btn btn-primary mb-2">
         Filter
       </button>
     </div>
