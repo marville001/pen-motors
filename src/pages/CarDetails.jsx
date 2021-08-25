@@ -2,17 +2,33 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DetailsCarousel from "../components/DetailsCarousel";
-import { getCarActions } from "../redux/actions/carsActions";
+import { addToCartActions, decrementQuantity, getCarActions, incrementQuantity, removeFromCartActions } from "../redux/actions/carsActions";
 
 const CarDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { car, loading, error } = useSelector((state) => state.cars);
+  const { car, loading, error, cart } = useSelector((state) => state.cars);
+
+  const inCart = () => {
+    const item = cart.find((c) => c.id === id);
+    if (item?.id) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const fetchQuantity = () => {
+    if (cart.length === 0) {
+      return 0;
+    } else {
+      return cart?.find((c) => c.id === id).quantity;
+    }
+  };
 
   useEffect(() => {
     dispatch(getCarActions(id));
-  }, []);
+  }, [dispatch, id]);
   if (error) {
     return <h4 style={{ textAlign: "center", color: "red" }}>{error}</h4>;
   }
@@ -36,14 +52,44 @@ const CarDetails = () => {
                 Price Ksh <span className="text-success">{car.price}</span>
               </h5>
               <div className="mt-3 price-cart"></div>
-              <button className="btn btn-outline-primary btn-sm">
-                Add <i className="fa fa-cart-plus"></i>
-              </button>
-              {/* <div className="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" className="btn btn-sm btn-primary px-2">-</button>
-                        <button type="button" className="btn btn-sm btn-light">3</button>
-                        <button type="button" className="btn btn-sm btn-primary px-2">+</button>
-                    </div> */}
+              {inCart() ? (
+                <div
+                  className="btn-group"
+                  role="group"
+                  aria-label="Basic example"
+                >
+                  <button
+                    onClick={() => {
+                      if (fetchQuantity() <= 1) {
+                        dispatch(removeFromCartActions(id));
+                      } else {
+                        dispatch(decrementQuantity(id));
+                      }
+                    }}
+                    type="button"
+                    className="btn btn-sm btn-primary px-2"
+                  >
+                    -
+                  </button>
+                  <button type="button" className="btn btn-sm btn-light">
+                    {fetchQuantity()}
+                  </button>
+                  <button
+                    onClick={() => dispatch(incrementQuantity(id))}
+                    type="button"
+                    className="btn btn-sm btn-primary px-2"
+                  >
+                    +
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => dispatch(addToCartActions(id))}
+                  className="btn btn-outline-primary btn-sm"
+                >
+                  Add <i className="fa fa-cart-plus"></i>
+                </button>
+              )}
               <div className="details-items">
                 <div className="details-item">
                   <h4>Make</h4>

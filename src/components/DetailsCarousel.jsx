@@ -24,7 +24,7 @@ const DetailsCarousel = ({ images }) => {
         <div className="carousel-inner">
           {images.map((image, i) => (
             <div className= {i===0 ? "carousel-item active":"carousel-item"}>
-              <img src={image} alt={"Image name"} srcset="" />
+              <img src={image} alt={"name"}  />
             </div>
           ))}
         </div>

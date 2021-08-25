@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addToCartActions, decrementQuantity, incrementQuantity } from "../redux/actions/carsActions";
+import { addToCartActions, decrementQuantity, incrementQuantity, removeFromCartActions } from "../redux/actions/carsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -25,9 +25,6 @@ const CarListCard = ({
       return cart?.find((c) => c.id === id).quantity;
     }
   };
-  useEffect(() => {
-    // console.log(fetchQuantity());
-  }, []);
   return (
     <div key={id} className="list-card">
       <Link to={`/details/${id}`}>
@@ -47,7 +44,15 @@ const CarListCard = ({
         <h5 className="text-success">Ksh {price}</h5>
         {inCart() ? (
           <div className="btn-group" role="group" aria-label="Basic example">
-            <button onClick={() => dispatch(decrementQuantity(id))} type="button" className="btn btn-sm btn-primary px-2">
+            <button 
+            onClick={() => {
+              if (fetchQuantity() <= 1) {
+                dispatch(removeFromCartActions(id));
+              } else {
+                dispatch(decrementQuantity(id));
+              }
+            }}
+            type="button" className="btn btn-sm btn-primary px-2">
               -
             </button>
             <button type="button" className="btn btn-sm btn-light">
