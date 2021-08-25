@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { addToCartActions, decrementQuantity, incrementQuantity, removeFromCartActions } from "../redux/actions/carsActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
 const CarListCard = ({
   car: { id, mileage, make, model, images, price, year, name },
