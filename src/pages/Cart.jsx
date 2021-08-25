@@ -1,9 +1,39 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCartActions,
+} from "../redux/actions/carsActions";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state.cars);
+  const dispatch = useDispatch();
+
+  const [cartTotal, setCartTotal] = useState(0)
+  const [discount, setDiscount] = useState(0)
+
+  const calculateCartTotal = ()=>{
+    const total = cart?.reduce((acc,value)=> acc +(value.price * value.quantity), 0)
+    setCartTotal(total)
+    calculateDiscount()
+  }
+
+  const calculateDiscount = ()=>{
+    const totalCars = cart?.reduce((acc,value)=> acc +value.quantity, 0)
+    if(totalCars>=5){
+      setDiscount(Math.floor(0.05*cartTotal))
+    }else{
+      setDiscount(0)
+    }
+  }
+
+  useEffect(() => {
+    calculateCartTotal()
+  }, [cart])
+
   return (
     <div className="page-container">
       <h3 className="cart-heading">Your Cart</h3>
@@ -42,6 +72,13 @@ const Cart = () => {
                         aria-label="Basic example"
                       >
                         <button
+                          onClick={() => {
+                            if (c.quantity === 1) {
+                              dispatch(removeFromCartActions(c.id));
+                            } else {
+                              dispatch(decrementQuantity(c.id));
+                            }
+                          }}
                           type="button"
                           className="btn btn-sm btn-primary px-2"
                         >
@@ -51,6 +88,7 @@ const Cart = () => {
                           {c.quantity}
                         </button>
                         <button
+                          onClick={() => dispatch(incrementQuantity(c.id))}
                           type="button"
                           className="btn btn-sm btn-primary px-2"
                         >
@@ -64,7 +102,10 @@ const Cart = () => {
                       </h4>
                     </td>
                     <td>
-                      <i className="fa fa-trash"></i>
+                      <i
+                        onClick={() => dispatch(removeFromCartActions(c.id))}
+                        className="fa fa-trash"
+                      ></i>
                     </td>
                   </tr>
                 ))}
@@ -73,10 +114,10 @@ const Cart = () => {
           </div>
           <div className="cart-total-container">
             <h4 className="cart-total-item">
-              <span>Cart Price</span> <span>Ksh 6535356</span>
+              <span>Cart Price</span> <span>Ksh {cartTotal}</span>
             </h4>
             <h4 className="cart-total-item">
-              <span>Tax</span> <span>Ksh 6535356</span>
+              <span>Discount</span> <span>Ksh {discount}</span>
             </h4>
             <h4 className="cart-total-item">
               <span>Total Price</span> <span>Ksh 6535356</span>

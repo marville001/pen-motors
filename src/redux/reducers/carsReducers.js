@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CAR, CARS } from '../types';
+import { ADD_TO_CART, CAR, CARS, DECREMENT_QUANTITY, INCREMENT_QUANTITY, REMOVE_FROM_CART } from '../types';
 
 const initialState = {
     cars: [],
@@ -22,11 +22,35 @@ export const carsReducer = (state = initialState, action) => {
             return { ...state, loading: false, car: action.car }
         case CAR.FAIL:
             return { ...state, loading: false, error: action.error }
-            case ADD_TO_CART:
-                const item = state.cars.find(car=>car.id===action.id)
-                return { ...state, cart: [...state.cart, {...item, quantity: 1} ] }
-                // case ADD_CART_QUANTITY:
-                //     return { ...state, cart: [...state.cart, [action.id]:{name:"dhdh"} ] }
+        case ADD_TO_CART:
+            const item = state.cars.find(car => car.id === action.id)
+            return { ...state, cart: [...state.cart, { ...item, quantity: 1 }] }
+        case REMOVE_FROM_CART:
+            const filteredCart = state.cart.filter(c => c.id !== action.id);
+            return { ...state, cart: [...filteredCart] }
+        case INCREMENT_QUANTITY:
+            const items1 = state.cart.map(c => {
+                if (c.id === action.id) {
+                    c.quantity++
+                }
+                return c
+            })
+            
+            return {
+                ...state,
+                cart: [...items1]
+            }
+        case DECREMENT_QUANTITY:
+            const items = state.cart.map(c => {
+                if (c.id === action.id) {
+                    c.quantity > 1 && c.quantity--
+                }
+                return c
+            })
+            return {
+                ...state,
+                cart: [...items]
+            }
 
         default:
             return state

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CAR, CARS, ADD_TO_CART } from "../types"
+import { CAR, CARS, ADD_TO_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY, REMOVE_FROM_CART } from "../types"
 
 export const getCarsActions = () => async (dispatch) => {
     dispatch({
@@ -46,6 +46,27 @@ export const getCarActions = (id) => async (dispatch) => {
 export const addToCartActions = (id) => async (dispatch) => {
     dispatch({
         type: ADD_TO_CART,
+        id
+    })
+}
+
+export const removeFromCartActions = (id) => async (dispatch) => {
+    dispatch({
+        type: REMOVE_FROM_CART,
+        id
+    })
+}
+
+export const incrementQuantity = (id) => async (dispatch) => {
+    dispatch({
+        type: INCREMENT_QUANTITY,
+        id
+    })
+}
+
+export const decrementQuantity = (id) => async (dispatch) => {
+    dispatch({
+        type: DECREMENT_QUANTITY,
         id
     })
 }
